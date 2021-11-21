@@ -1,0 +1,27 @@
+<form #form="ngForm" (ngSubmit)="login()">
+   
+    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+    <div class="mb-3">
+      <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" email [(ngModel)="user.email"] #email="ngModel" maxlength="300" required>
+      <label for="email">email adress</label>
+        <div *ngIf="(email.invalid && email.touched)  | | email.dirty">
+          <div class="alert alert-danger" *ngIf="email.errors?.required">Email adress is required</div>
+          <div *ngIf="(email.invalid && email.touched)  | | email.dirty">
+              <div class="alert alert-danger" *ngIf="email.errors?.email">Email adress is invalid</div>
+      </div>
+  
+  
+      <div class="mb-3">
+  
+      <input type="password" name="password" class="form-control" id="password" placeholder="password"  [(ngModel)="user.password"] #password="ngModel" required minlength="10">
+      <label for="password">password Confirm</label>
+    </div>
+    <div *ngIf="(password.invalid && password.touched)  | | password.dirty">
+      <div class="alert alert-danger" *ngIf="password.errors?.required">Password is required/div>
+      <div class="alert alert-danger" *ngIf="password.errors?.minlength">Min length is 10</div>
+      </div>
+     
+       <button class="w-100 btn btn-lg btn-primary" type="submit"[disabled]= "!form.form.valid">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+  
+      </form>
